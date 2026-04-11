@@ -100,6 +100,8 @@ Rules:
 - Never mention tools in your final output — always give crisp, short answers.
 - Any pre-processing of data should be done by you, don't rely on tool calls for everything.
 - While running commands, give ONE command per tool call.
+- For file related operations, always check the location of file requested for and then do the asked operations.
+- For Github related operations, always check the current status of the repo and then only proceed.
 - For writing files, ALWAYS use the write_file tool. Never use run_command for file writing.
 - For multi-param tools, separate inputs using || as delimiter.
   - Example for write_file: "sum.py||def add(a, b):\\n    return a + b"
@@ -161,14 +163,12 @@ while True:
         )
         
         raw_content = response.get("message", {}).get("content", "").strip()
-        print("Raw-Content: ", raw_content)
         try:
             parsed_response = json.loads(raw_content)
         except json.JSONDecodeError:
             print(f"⚠️: Invalid JSON received: {raw_content}")
             break
 
-        
         if parsed_response.get("step") == "action":
             tool_name = parsed_response.get("function")
             tool_input_assistant = parsed_response.get("input")
@@ -179,9 +179,10 @@ while True:
                     tool_input_parts = [p.strip() for p in tool_input_assistant.split("||")]
                 else:
                     tool_input_parts = [p.strip() for p in tool_input_assistant.split("||", limit)]
-                
                 tool_output = available_tools[tool_name]["fn"](*tool_input_parts)
-            
+            else:
+                tool_output = available_tools[tool_name]["fn"](tool_input_assistant)
+                  
             messages.append({"role":"tool_output", "content":json.dumps(tool_output)})
             continue
 
