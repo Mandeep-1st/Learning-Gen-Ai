@@ -18,4 +18,13 @@ YOu can use it from online also and can also spin up a docker container, you can
 
 Neo4j or generally graph dbs use Cypher query language to communicate you will eventually get that but there is no side way of it.
 
-Now to use It in RAG we have 3 ways :- Compelete raw way, Langchain way , Mem0 library way
+Now to use It in RAG we have 3 ways :- Complete raw way, Langchain way , Mem0 library way
+
+## Mem0way folder
+
+so i am first use this mem0ai library it's a light weight library -> but this library has changed a lot and now the library can't be used as shown in the cohort now we have to create an api of the that library and then that internally use the graph db and vector db for us. `But i need to make this local thing work on graph and vector so i can understand things instead of making it abstract`
+
+## Using Langchain.
+
+We install some of the dependencies, "@langchain/core @langchain/community neo4j-driver"
+So we will create a chatting agent nothing more than that.

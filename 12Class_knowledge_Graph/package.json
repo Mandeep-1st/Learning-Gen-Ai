@@ -1,0 +1,26 @@
+{
+  "name": "12Class_knowledge_Graph",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.26.2",
+  "dependencies": {
+    "@langchain/community": "^1.1.29",
+    "@langchain/core": "^1.2.8",
+    "@langchain/openai": "^1.5.8",
+    "@langchain/qdrant": "^1.0.3",
+    "@qdrant/js-client-rest": "1.8.0",
+    "better-sqlite3": "^13.0.3",
+    "dotenv": "^17.4.2",
+    "mem0ai": "^3.1.5",
+    "neo4j-driver": "^6.2.0",
+    "openai": "^7.4.0"
+  }
+}
