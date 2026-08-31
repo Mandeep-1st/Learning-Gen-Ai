@@ -28,7 +28,7 @@ class State(TypedDict):
     
 def chatbot(state: State):
     message = llmWithTools.invoke( state.get("messages"))
-    assert len(message.tool_calls) <= 1
+    assert len(message.tool_calls) <= 1, "Only one tool call allowed at once."
     return {"messages":[message]}
 
 
